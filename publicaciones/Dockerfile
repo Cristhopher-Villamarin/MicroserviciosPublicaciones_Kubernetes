@@ -1,13 +1,14 @@
-# Usa una imagen base de Java
+
+# Usa una imagen base ligera de Java
 FROM openjdk:17-jdk-slim
 
-# Establece el directorio de trabajo dentro del contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo .jar generado desde el directorio target al contenedor
-COPY target/publicaciones-*.jar /app/app.jar
+# Copia el archivo JAR ejecutable desde el directorio target
+COPY target/publicaciones-0.0.1-SNAPSHOT.jar /app/app.jar
 
-# Expone el puerto que usa Eureka (por defecto 8761)
+# Expone el puerto (8761 para Eureka, cámbialo según el microservicio)
 EXPOSE 8084
 
 # Comando para ejecutar la aplicación

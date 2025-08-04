@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/sincronizacion-*.jar /app/app.jar
 
 # Expone el puerto que usa Eureka (por defecto 8761)
-EXPOSE 8083
+EXPOSE 8086
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

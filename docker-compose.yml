@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  eureka-server:
+    image: eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  authservice:
+    image: authservice:latest
+    container_name: authservice
+    ports:
+      - "8083:8083"
+    environment:
+      - EUREKA_SERVER=http://eureka-server:8761/eureka
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  ms-api-gateway:
+    image: ms-api-gateway:latest
+    container_name: ms-api-gateway
+    ports:
+      - "8088:8088"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  ms-catalogo:
+    image: ms-catalogo:latest
+    container_name: ms-catalogo
+    ports:
+      - "8085:8085"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  notificaciones:
+    image: notificaciones:latest
+    container_name: notificaciones
+    ports:
+      - "8087:8087"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  sincronizacion:
+    image: sincronizacion:latest
+    container_name: sincronizacion
+    ports:
+      - "8086:8086"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+  publicaciones:
+    image: publicaciones:latest
+    container_name: publicaciones
+    ports:
+      - "8084:8084"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka-server
+
+networks:
+  microservices-network:
+    driver: bridge

@@ -5,6 +5,6 @@ spring:
     username: admin
     password: admin
 server:
-  port: 8083
+  port: 8086
 reloj:
   intervalo: 10
