@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: api-gateway
-          image: jcnazate/api-gateway
-          imagePullPolicy: Never
+          image: jcnazate/api-gateway:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8088
           env:

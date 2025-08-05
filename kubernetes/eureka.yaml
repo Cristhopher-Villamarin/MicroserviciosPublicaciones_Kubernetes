@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: eureka-server
-          image: jcnazate/eureka-server
-          imagePullPolicy: Never
+          image: jcnazate/eureka-server:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8761
           env:

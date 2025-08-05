@@ -15,19 +15,19 @@ spec:
     spec:
       containers:
         - name: publicaciones
-          image: jcnazate/publicaciones
-          imagePullPolicy: Never
+          image: jcnazate/publicaciones:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8084
           env:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "http://eureka-server:8761/eureka"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://cockroachdb-public:26257/publicaciones_db?sslmode=disable"
+              value: "jdbc:postgresql://postgres:5432/publicaciones_db"  # Cambiado para usar PostgreSQL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "root"
+              value: "admin"  # Usuario de PostgreSQL
             - name: SPRING_DATASOURCE_PASSWORD
-              value: ""  # Asegúrate de que CockroachDB acepte esto o añade la contraseña
+              value: "password"  # Contraseña de PostgreSQL
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: "update"
             - name: SPRING_RABBITMQ_HOST

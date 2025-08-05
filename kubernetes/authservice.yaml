@@ -15,19 +15,19 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: jcnazate/auth-service
-          imagePullPolicy: Never
+          image: jcnazate/auth-service:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8083
           env:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: "http://eureka-server:8761/eureka"
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://cockroachdb-public:26257/autenticacion_db?sslmode=disable"
+              value: "jdbc:postgresql://postgres:5432/autentificacion_db"  # Cambiado para usar PostgreSQL
             - name: SPRING_DATASOURCE_USERNAME
-              value: "root"
+              value: "admin"  # Usuario de PostgreSQL
             - name: SPRING_DATASOURCE_PASSWORD
-              value: ""
+              value: "password"  # Contraseña de PostgreSQL
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: "update"
 ---
